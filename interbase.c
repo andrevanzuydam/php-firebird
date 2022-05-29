@@ -1226,12 +1226,12 @@ PHP_FUNCTION(ibase_trans)
 								trans_timeout = Z_LVAL(args[i]);
 
 								if (trans_timeout <= 0 || trans_timeout > 0x7FFF) {
-									php_error_docref(NULL, E_WARNING, "Timeout parameter exceeds field width");
+									php_error_docref(NULL, E_WARNING, "Invalid timeout parameter");
 								} else {
 									last_tpb[tpb_len++] = isc_tpb_lock_timeout;
 									last_tpb[tpb_len++] = sizeof(ISC_SHORT);
 									last_tpb[tpb_len] = (ISC_SHORT)trans_timeout;
-									tpb_len+=sizeof(ISC_SHORT);
+									tpb_len += sizeof(ISC_SHORT);
 								}
 							} else {
 								php_error_docref(NULL, E_WARNING, "IBASE_LOCK_TIMEOUT expects next argument to be timeout value");
